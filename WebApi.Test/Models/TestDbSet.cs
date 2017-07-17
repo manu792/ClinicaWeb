@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApi.Test
+namespace WebApi.Test.Models
 {
     public class TestDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T> where T : class
     {

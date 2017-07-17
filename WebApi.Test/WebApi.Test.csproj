@@ -81,13 +81,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestClinicaContext.cs" />
-    <Compile Include="TestDbSet.cs" />
-    <Compile Include="TestPacienteDbSet.cs" />
-    <Compile Include="TestPacienteController.cs" />
+    <Compile Include="Controllers\TestAuthenticationController.cs" />
+    <Compile Include="Controllers\TestPacienteController.cs" />
+    <Compile Include="Controllers\TestTratamientoController.cs" />
+    <Compile Include="Models\TestAuthentication.cs" />
+    <Compile Include="Models\TestClinicaContext.cs" />
+    <Compile Include="Models\TestDbSet.cs" />
+    <Compile Include="Models\TestPacienteDbSet.cs" />
+    <Compile Include="Models\TestTratamientoDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestTratamientoController.cs" />
-    <Compile Include="TestTratamientoDbSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -99,9 +101,7 @@
       <Name>ClinicaWeb</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

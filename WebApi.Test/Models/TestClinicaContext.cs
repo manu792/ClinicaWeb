@@ -1,12 +1,12 @@
 ﻿using ClinicaWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 
-namespace WebApi.Test
+namespace WebApi.Test.Models
 {
     public class TestClinicaContext : IContext
     {
@@ -21,12 +21,12 @@ namespace WebApi.Test
 
         public void Dispose()
         {
-            
+
         }
 
         public void MarkAsModified<T>(T item) where T : class
         {
-            
+
         }
 
         public int SaveChanges()

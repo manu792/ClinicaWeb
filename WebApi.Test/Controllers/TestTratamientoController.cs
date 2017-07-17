@@ -9,8 +9,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using WebApi.Test.Models;
 
-namespace WebApi.Test
+namespace WebApi.Test.Controllers
 {
     [TestClass]
     public class TestTratamientoController
@@ -99,12 +100,12 @@ namespace WebApi.Test
         {
             return new Tratamiento()
             {
-                 Id = 1,
-                 Costo = 2500,
-                 Detalle = "Prueba",
-                 FechaConclusion = DateTime.Now.AddMonths(1),
-                 FechaInicio = DateTime.Now,
-                 PacienteId = "115190794"
+                Id = 1,
+                Costo = 2500,
+                Detalle = "Prueba",
+                FechaConclusion = DateTime.Now.AddMonths(1),
+                FechaInicio = DateTime.Now,
+                PacienteId = "115190794"
             };
         }
 

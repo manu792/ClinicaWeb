@@ -23,10 +23,10 @@ namespace ClinicaWeb.Controllers
             // Looks for username and password in the Web.config file
             if (!Authentication.Authenticate(credentials))
             {
-                return Ok(new { success = false, message = "Username or password is incorrect" });
+                return Ok(new AuthenticationFailed() { Success = false, Message = "Username or password is incorrect" });
             }
 
-            return Ok(new { success = true });
+            return Ok(new AuthenticationSuccessful() { Success = true });
         }
     }
 }

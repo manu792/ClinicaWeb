@@ -1,16 +1,17 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using ClinicaWeb.Models;
-using ClinicaWeb.Controllers;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web.Http.Results;
-using System.Net;
+﻿using ClinicaWeb.Controllers;
 using ClinicaWeb.DTOs;
+using ClinicaWeb.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Http.Results;
+using WebApi.Test.Models;
 
-namespace WebApi.Test
+namespace WebApi.Test.Controllers
 {
     [TestClass]
     public class TestPacienteController
@@ -76,7 +77,7 @@ namespace WebApi.Test
 
             var controller = new PacientesController(context);
             IEnumerable<PacienteDto> result = controller.GetPacientes();
-            
+
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result.LongCount());
         }

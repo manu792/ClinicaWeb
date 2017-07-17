@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApi.Test
+namespace WebApi.Test.Models
 {
     class TestTratamientoDbSet : TestDbSet<Tratamiento>
     {
