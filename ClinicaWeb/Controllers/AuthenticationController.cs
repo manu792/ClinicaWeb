@@ -10,10 +10,18 @@ namespace ClinicaWeb.Controllers
 {
     public class AuthenticationController : ApiController
     {
-        public IHttpActionResult PostAuthentication(Authentication authentication)
+        //We are currently authenticating against Web.config, but we could change data source.
+        private IAuthentication Authentication { get; set; }
+
+        public AuthenticationController(IAuthentication authentication)
+        {
+            Authentication = authentication;
+        }
+
+        public IHttpActionResult PostAuthentication(Credentials credentials)
         {
             // Looks for username and password in the Web.config file
-            if (!(authentication.Username == ConfigurationManager.AppSettings["username"] && authentication.Password == ConfigurationManager.AppSettings["password"]))
+            if (!Authentication.Authenticate(credentials))
             {
                 return Ok(new { success = false, message = "Username or password is incorrect" });
             }

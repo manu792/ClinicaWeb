@@ -30,6 +30,7 @@ namespace ClinicaWeb.Autofac
 
             // Register specific implementations
             builder.RegisterType<ClinicaContext>().As<IContext>().InstancePerRequest();
+            builder.RegisterType<Authentication>().As<IAuthentication>().InstancePerRequest();
 
             // OPTIONAL: Register the Autofac filter provider.
             builder.RegisterWebApiFilterProvider(config);

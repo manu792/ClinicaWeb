@@ -923,8 +923,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Authentication.cs" />
+    <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\ClinicaContext.cs" />
     <Compile Include="Models\ClinicaDatabaseInitializer.cs" />
+    <Compile Include="Models\IAuthentication.cs" />
     <Compile Include="Models\IContext.cs" />
     <Compile Include="Models\Paciente.cs" />
     <Compile Include="Models\Tratamiento.cs" />
