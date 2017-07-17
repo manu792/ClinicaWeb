@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Clinica Web</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether.css" rel="stylesheet"/>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="Content/ui-grid.css" rel="stylesheet" />
+    <link href="Content/angular-datepicker.css" rel="stylesheet" />
+</head>
+<body ng-app="app">
+    <main class="container body-content">
+        <header class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <h1>Mi Dentista Favorito</h1>
+            </div>
+            <div ng-class="{'log-out-show': globals.currentUser }" class="col-md-2 log-out">
+                <div class="btn btn-default"><a href="/Index.html">Cerrar Sesion</a></div>
+            </div>
+        </header>
+
+        <ng-view></ng-view>
+        
+        <hr />
+        <footer>
+            <p>Desarrollado por Manuel Roman</p>
+        </footer>
+    </main>
+
+
+    <!--Templates-->
+    <script type="text/ng-template" id="login">
+        <div ng-controller="LoginController as loginController">
+            <div class="alert alert-info">
+                Username: test<br />
+                Password: test
+            </div>
+            <!--<div ng-show="error" class="alert alert-danger">{{error}}</div>-->
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <p ng-show="error != ''" class="label label-warning">{{error}}</p>
+                    <form name="form" ng-submit="login()" role="form">
+                        <div class="form-group">
+                            <label for="username">Usuario:</label>
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
+                            <!--<span ng-show="usernameRequiredMessage" class="help-block">Username is required</span>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+                            <!--<span ng-show="passwordRequiredMessage" class="help-block">Password is required</span>-->
+                        </div>
+                        <div class="form-actions">
+                            <div class="col-md-4 col-md-offset-4">
+                                <button type="submit" ng-disabled="form.$invalid" class="btn btn-danger">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="listaPacientes">
+        <div ng-controller="PacienteController as pac">
+            <div class="jumbotron">
+                <h2>Lista de Pacientes</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <button ng-click="agregar()" class="btn btn-success btn-actualizar">Agregar Cliente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Wrapper-->
+            <div id="addModal" class="modalWrapper">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="modal-content">
+                            <ng-include src="modalToDisplay"></ng-include>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal agregarPaciente-->
+            <script type="text/ng-template" id="agregarPaciente">
+                <span ng-click="cerrarModal()" class="close">&times;</span>
+                <div class="information">
+                    <form name="form" ng-submit="guardarPaciente()" role="form">
+                        <div class="form-group">
+                            <label for="cedula">Cedula:</label>
+                            <input ng-model="paciente.PacienteId" type="text" class="form-control" id="cedula" placeholder="Cedula.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input ng-model="paciente.Nombre" type="text" class="form-control" id="nombre" placeholder="Nombre.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edad">Edad:</label>
+                            <input ng-model="paciente.Edad" type="number" class="form-control" id="edad" placeholder="Edad.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto">Contacto:</label>
+                            <input ng-model="paciente.Contacto" type="text" class="form-control" id="contacto" placeholder="Contacto.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaUltimaVisita">Fecha Ultima Visita:</label>
+                            <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{pacienteFechaUltimaVisitaVisible}}">
+                                <div class="input-group">
+                                    <input id="fechaUltimaVisita" ng-model="paciente.FechaUltimaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <span ng-click="togglePacienteFechaUltimaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </datepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaProximaVisita">Fecha Proxima Visita:</label>
+                            <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{pacienteFechaProximaVisitaVisible}}">
+                                <div class="input-group">
+                                    <input id="fechaProximaVisita" ng-model="paciente.FechaProximaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <span ng-click="togglePacienteFechaProximaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </datepicker>
+                        </div>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-info btn-actualizar">Guardar</button>
+                    </form>
+                </div>
+            </script>
+        </div>
+    </script>
+    
+    <script type="text/ng-template" id="detalle">
+        <div ng-controller="DetalleController as detalle">
+            <div class="jumbotron">
+                <h2>Detalle del Paciente: {{paciente.PacienteId}}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input ng-model="paciente.Nombre" type="text" class="form-control" id="nombre" placeholder="Nombre..">
+                    </div>
+                    <div class="form-group">
+                        <label for="edad">Edad:</label>
+                        <input ng-model="paciente.Edad" type="number" class="form-control" id="edad" placeholder="Edad..">
+                    </div>
+                    <div class="form-group">
+                        <label for="contacto">Contacto:</label>
+                        <input ng-model="paciente.Contacto" type="text" class="form-control" id="contacto" placeholder="Contacto..">
+                    </div>
+                    <div class="form-group">
+                        <label for="ultimaVisita">Fecha Ultima Visita:</label>
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{ultimaVisitaDatepickerVisible}}">
+                            <div class="input-group">
+                                <input id="ultimaVisita" ng-model="paciente.FechaUltimaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                <span ng-click="toggleUltimaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </span>
+                            </div>
+                        </datepicker>
+                    </div>
+                    <div class="form-group">
+                        <label for="proximaVisita">Fecha Proxima Visita:</label>
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{proximaVisitaDatepickerVisible}}">
+                            <div class="input-group">
+                                <input id="proximaVisita" ng-model="paciente.FechaProximaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                <span ng-click="toggleProximaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </span>
+                            </div>
+                        </datepicker>
+                    </div>
+                    <div class="form-group">
+                        <button ng-click="editarPaciente()" class="btn btn-info btn-actualizar">Actualizar datos</button>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="gridData.length > 0" class="row">
+                <h2>Tratamientos del paciente</h2>
+                <div class="col-md-12">
+                    <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <button ng-click="agregarTratamiento()" class="btn btn-success btn-actualizar">Agregar Tratamiento</button>
+                </div>
+            </div>
+            <!-- Modal Wrapper-->
+            <div id="editModal" class="modalWrapper">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="modal-content">
+                            <ng-include src="modalToDisplay"></ng-include>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal editarTratamiento-->
+            <script type="text/ng-template" id="editarTratamiento">
+                <span ng-click="cerrarModal()" class="close">&times;</span>
+                <div class="information">
+                    <form name="form" ng-submit="actualizarTratamiento()" role="form">
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha Inicio:</label>
+                            <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaInicioVisible}}">
+                                <div class="input-group">
+                                    <input id="fechaInicio" ng-model="tratamiento.FechaInicio" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <span ng-click="toggleTratamientoFechaInicioDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </datepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaConclusion">Fecha Conclusion:</label>
+                            <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaConclusionVisible}}">
+                                <div class="input-group">
+                                    <input id="fechaConclusion" ng-model="tratamiento.FechaConclusion" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                    <span ng-click="toggleTratamientoFechaConclusionDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </datepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="costo">Costo:</label>
+                            <input ng-model="tratamiento.Costo" type="number" class="form-control" id="costo" placeholder="Costo.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalle">Detalle:</label>
+                            <input ng-model="tratamiento.Detalle" type="text" class="form-control" id="detalle" placeholder="Detalle.." required>
+                        </div>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-info btn-actualizar">Actualizar</button>
+                    </form>
+                </div>
+            </script>
+
+            <!--Modal agregarTratamiento-->
+            <script type="text/ng-template" id="agregarTratamiento">
+                <span ng-click="cerrarModal()" class="close">&times;</span>
+                <div class="information">
+                    <form name="form" ng-submit="guardarTratamiento()" role="form">
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha Inicio:</label>
+                            <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaInicioVisible}}">
+                                <div class="input-group">
+                                    <input id="fechaInicio" ng-model="tratamiento.FechaInicio" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <span ng-click="toggleTratamientoFechaInicioDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </datepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaConclusion">Fecha Conclusion:</label>
+                            <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaConclusionVisible}}">
+                                <div class="input-group">
+                                    <input id="fechaConclusion" ng-model="tratamiento.FechaConclusion" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                    <span ng-click="toggleTratamientoFechaConclusionDatepicker()" class="input-group-addon" style="cursor: pointer">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                </div>
+                            </datepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="costo">Costo:</label>
+                            <input ng-model="tratamiento.Costo" type="number" class="form-control" id="costo" placeholder="Costo.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalle">Detalle:</label>
+                            <input ng-model="tratamiento.Detalle" type="text" class="form-control" id="detalle" placeholder="Detalle.." required>
+                        </div>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-info btn-actualizar">Guardar</button>
+                    </form>
+                </div>
+            </script>
+        </div>
+    </script>
+    <!--End Templates-->
+
+    <!--Scripts-->
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/number-polyfill.js"></script>
+
+    <!--AngularJS Scripts-->
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-datepicker.js"></script>
+    <script src="Scripts/angular-cookies.min.js"></script>
+    <script src="Scripts/app/app.module.js"></script>
+    <script src="Scripts/app/controllers/login.controller.js"></script>
+    <script src="Scripts/app/controllers/paciente.controller.js"></script>
+    <script src="Scripts/app/controllers/detalle.controller.js"></script>
+
+    <!--AngularJS Services-->
+    <script src="Scripts/app/services/authentication.service.js"></script>
+    <script src="Scripts/app/services/services.js"></script>
+
+    <!--UI Grid-->
+    <script src="Scripts/ui-grid.js"></script>
+
+    <!--Routing-->
+    <script src="Scripts/App/app.routing.js"></script>
+</body>
+</html>
