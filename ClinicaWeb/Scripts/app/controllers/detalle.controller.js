@@ -53,8 +53,9 @@
             }
 
             $scope.guardarTratamiento = function () {
-                TratamientoService.saveTratamiento($scope.tratamiento, function (data) {
+                TratamientoService.saveTratamiento($scope.tratamiento, function (response) {
                     alert('Tratamiento agregado correctamente');
+                    $scope.tratamiento.Id = response.data.Id;
                     $scope.gridData.push($scope.tratamiento);
                     $scope.cerrarModal();
                 }, function (error) {
