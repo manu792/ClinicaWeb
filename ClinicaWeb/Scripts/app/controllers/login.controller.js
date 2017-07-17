@@ -12,11 +12,11 @@
             $scope.login = function () {
                 $scope.error = '';
                 AuthenticationService.Login($scope.username, $scope.password, function (response) {
-                    if (response.data.success) {
+                    if (response.data.Success) {
                         AuthenticationService.SetCredentials($scope.username, $scope.password);
                         $location.path('/pacientes');
                     } else {
-                        $scope.error = response.data.message;
+                        $scope.error = response.data.Message;
                     }
                 });
             };
