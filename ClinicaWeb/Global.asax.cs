@@ -20,7 +20,6 @@ namespace ClinicaWeb
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //Initialize the DB with some data
             Database.SetInitializer(new ClinicaDatabaseInitializer());
