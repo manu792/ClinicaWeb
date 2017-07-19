@@ -5,6 +5,8 @@
             
             $scope.gridData = [];
 
+            $scope.spinnerVisible = true;
+
             //Modal
             $scope.modalWrapper = document.getElementById('addModal');
             $scope.paciente = {};
@@ -78,6 +80,10 @@
             PacienteService.getPacientes(function (data) {
                 convertFechas(data);
                 $scope.gridData = data;
+            }, function (error) {
+                alert(error);
+            }, function () {
+                $scope.spinnerVisible = false;
             });
 
             function convertFechas(pacientes) {

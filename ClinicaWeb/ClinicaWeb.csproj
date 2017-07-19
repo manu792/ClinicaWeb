@@ -156,6 +156,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\app.http-interceptor.js" />
     <Content Include="Scripts\app\app.module.js" />
     <Content Include="Scripts\app\app.routing.js" />
     <Content Include="Scripts\app\controllers\detalle.controller.js" />

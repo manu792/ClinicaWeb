@@ -18,12 +18,14 @@
                         });
                 },
 
-                getPacientes: function (callback) {
+                getPacientes: function (callback, errorCallback, finallyCallback) {
                     $http.get(url + '/api/pacientes')
                         .then(function (response) {
                             callback(response.data);
                         }, function (error) {
-                            console.log(error);
+                            errorCallback(error);
+                        }).finally(function () {
+                            finallyCallback();
                         });
                 },
 
