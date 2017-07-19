@@ -5,12 +5,7 @@ using System.Web;
 
 namespace ClinicaWeb.Models
 {
-    public class AuthenticationSuccessful
-    {
-        public bool Success { get; set; }
-    }
-
-    public class AuthenticationFailed
+    public class AuthenticationResponse
     {
         public bool Success { get; set; }
         public string Message { get; set; }

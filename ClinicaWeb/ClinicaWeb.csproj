@@ -126,6 +126,7 @@
     <Content Include="Content\ui-grid.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\spinner.gif" />
     <Content Include="Index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -923,7 +924,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Authentication.cs" />
-    <Compile Include="Models\AuthenticationResponses.cs" />
+    <Compile Include="Models\AuthenticationResponse.cs" />
     <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\ClinicaContext.cs" />
     <Compile Include="Models\ClinicaDatabaseInitializer.cs" />

@@ -73,6 +73,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div>
+                    <div id="spinner-container">
+                        <img id="spinner" class="ajax-loader" ng-src="Images/spinner.gif">
+                    </div>
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
                             <button ng-click="agregar()" class="btn btn-success btn-actualizar">Agregar Cliente</button>
@@ -191,6 +194,9 @@
                 <h2>Tratamientos del paciente</h2>
                 <div class="col-md-12">
                     <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div>
+                    <div id="spinner-container">
+                        <img id="spinner" class="ajax-loader" ng-src="Images/spinner.gif">
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -308,14 +314,14 @@
     <script src="Scripts/app/controllers/paciente.controller.js"></script>
     <script src="Scripts/app/controllers/detalle.controller.js"></script>
 
+    <!--Routing-->
+    <script src="Scripts/App/app.routing.js"></script>
+
     <!--AngularJS Services-->
     <script src="Scripts/app/services/authentication.service.js"></script>
     <script src="Scripts/app/services/services.js"></script>
 
     <!--UI Grid-->
     <script src="Scripts/ui-grid.js"></script>
-
-    <!--Routing-->
-    <script src="Scripts/App/app.routing.js"></script>
 </body>
 </html>

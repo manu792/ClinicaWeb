@@ -28,9 +28,10 @@ namespace WebApi.Test.Controllers
 
             var authenticationController = new AuthenticationController(testAuthentication);
 
-            var result = authenticationController.PostAuthentication(credentials) as OkNegotiatedContentResult<AuthenticationSuccessful>;
+            var result = authenticationController.PostAuthentication(credentials) as OkNegotiatedContentResult<AuthenticationResponse>;
             Assert.IsNotNull(result);
             Assert.AreEqual(true, result.Content.Success);
+            Assert.IsNull(result.Content.Message);
         }
         [TestMethod]
         public void TestPostAuthentication_ShouldReturnSuccessFalse()
@@ -45,7 +46,7 @@ namespace WebApi.Test.Controllers
 
             var authenticationController = new AuthenticationController(testAuthentication);
 
-            var result = authenticationController.PostAuthentication(credentials) as OkNegotiatedContentResult<AuthenticationFailed>;
+            var result = authenticationController.PostAuthentication(credentials) as OkNegotiatedContentResult<AuthenticationResponse>;
             Assert.IsNotNull(result);
             Assert.AreEqual(false, result.Content.Success);
             Assert.AreEqual("Username or password is incorrect", result.Content.Message);
