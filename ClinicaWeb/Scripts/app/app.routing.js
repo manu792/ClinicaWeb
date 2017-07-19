@@ -18,8 +18,9 @@
         .config(function ($httpProvider) {
             $httpProvider.interceptors.push(function ($q) {
                 return {
-                    'response': function (response) {
+                    'response': function (response) {    
                         // do something on success
+                        console.log('hi');
                         if ($("#spinner-container").length > 0) {
                             $("#spinner-container").hide();
                         }
