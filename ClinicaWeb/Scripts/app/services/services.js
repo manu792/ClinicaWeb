@@ -29,12 +29,14 @@
                         });
                 },
 
-                getPacientePorId: function (id, callback) {
+                getPacientePorId: function (id, callback, errorCallback, finallyCallback) {
                     $http.get(url + '/api/pacientes/' + id)
                         .then(function (response) {
                             callback(response.data);
                         }, function (error) {
-                            console.log(error);
+                            errorCallback(error);
+                        }).finally(function () {
+                            finallyCallback();
                         });
                 },
 

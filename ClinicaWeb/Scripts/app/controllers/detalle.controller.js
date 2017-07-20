@@ -3,6 +3,7 @@
     angular.module('app').
         controller('DetalleController', function ($scope, $location, $rootScope, PacienteService, TratamientoService) {
 
+            $scope.spinnerVisible = true;
             $scope.pacienteId = sessionStorage.pacienteId;
             $scope.nombre;
             $scope.ultimaVisitaDatepickerVisible = false;
@@ -118,6 +119,10 @@
                 $scope.nombre = $scope.paciente.Nombre;
                 convertFechasTratamientos();
                 $scope.gridData = $scope.paciente.Tratamientos;
+            }, function (error) {
+                alert(error);
+            }, function () {
+                $scope.spinnerVisible = false;
             });
 
             function updateGrid() {
