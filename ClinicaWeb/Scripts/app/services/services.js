@@ -41,7 +41,7 @@
                 },
 
                 editPaciente: function (paciente, callback, errorCallback) {
-                    $http.put(url + '/api/pacientes/' + paciente.PacienteId, paciente)
+                    $http.put(url + '/api/pacientes/' + paciente.pacienteId, paciente)
                         .then(function (response) {
                             callback(response.data);
                         }, function (error) {
@@ -64,7 +64,7 @@
 
             var factory = {
                 editTratamiento: function (tratamiento, callback, errorCallback) {
-                    $http.put(url + '/api/tratamientos/' + tratamiento.Id, tratamiento)
+                    $http.put(url + '/api/tratamientos/' + tratamiento.id, tratamiento)
                         .then(function (response) {
                             callback(response.data);
                         }, function (error) {

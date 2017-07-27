@@ -101,25 +101,25 @@
                     <form name="form" ng-submit="guardarPaciente()" role="form">
                         <div class="form-group">
                             <label for="cedula">Cedula:</label>
-                            <input ng-model="paciente.PacienteId" type="text" class="form-control" id="cedula" placeholder="Cedula.." required>
+                            <input ng-model="paciente.pacienteId" type="text" class="form-control" id="cedula" placeholder="Cedula.." required>
                         </div>
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input ng-model="paciente.Nombre" type="text" class="form-control" id="nombre" placeholder="Nombre.." required>
+                            <input ng-model="paciente.nombre" type="text" class="form-control" id="nombre" placeholder="Nombre.." required>
                         </div>
                         <div class="form-group">
                             <label for="edad">Edad:</label>
-                            <input ng-model="paciente.Edad" type="number" class="form-control" id="edad" placeholder="Edad.." required>
+                            <input ng-model="paciente.edad" type="number" class="form-control" id="edad" placeholder="Edad.." required>
                         </div>
                         <div class="form-group">
                             <label for="contacto">Contacto:</label>
-                            <input ng-model="paciente.Contacto" type="text" class="form-control" id="contacto" placeholder="Contacto.." required>
+                            <input ng-model="paciente.contacto" type="text" class="form-control" id="contacto" placeholder="Contacto.." required>
                         </div>
                         <div class="form-group">
                             <label for="fechaUltimaVisita">Fecha Ultima Visita:</label>
                             <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{pacienteFechaUltimaVisitaVisible}}">
                                 <div class="input-group">
-                                    <input id="fechaUltimaVisita" ng-model="paciente.FechaUltimaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <input id="fechaUltimaVisita" ng-model="paciente.fechaUltimaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" required />
                                     <span ng-click="togglePacienteFechaUltimaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
@@ -130,7 +130,7 @@
                             <label for="fechaProximaVisita">Fecha Proxima Visita:</label>
                             <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{pacienteFechaProximaVisitaVisible}}">
                                 <div class="input-group">
-                                    <input id="fechaProximaVisita" ng-model="paciente.FechaProximaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <input id="fechaProximaVisita" ng-model="paciente.fechaProximaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" required />
                                     <span ng-click="togglePacienteFechaProximaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
@@ -147,27 +147,27 @@
     <script type="text/ng-template" id="detalle">
         <div ng-controller="DetalleController as detalle">
             <div class="jumbotron">
-                <h2>Detalle del Paciente: {{paciente.PacienteId}}</h2>
+                <h2>Detalle del Paciente: {{paciente.pacienteId}}</h2>
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input ng-model="paciente.Nombre" type="text" class="form-control" id="nombre" placeholder="Nombre..">
+                        <input ng-model="paciente.nombre" type="text" class="form-control" id="nombre" placeholder="Nombre..">
                     </div>
                     <div class="form-group">
                         <label for="edad">Edad:</label>
-                        <input ng-model="paciente.Edad" type="number" class="form-control" id="edad" placeholder="Edad..">
+                        <input ng-model="paciente.edad" type="number" class="form-control" id="edad" placeholder="Edad..">
                     </div>
                     <div class="form-group">
                         <label for="contacto">Contacto:</label>
-                        <input ng-model="paciente.Contacto" type="text" class="form-control" id="contacto" placeholder="Contacto..">
+                        <input ng-model="paciente.contacto" type="text" class="form-control" id="contacto" placeholder="Contacto..">
                     </div>
                     <div class="form-group">
                         <label for="ultimaVisita">Fecha Ultima Visita:</label>
                         <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{ultimaVisitaDatepickerVisible}}">
                             <div class="input-group">
-                                <input id="ultimaVisita" ng-model="paciente.FechaUltimaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                <input id="ultimaVisita" ng-model="paciente.fechaUltimaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" />
                                 <span ng-click="toggleUltimaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </span>
@@ -178,7 +178,7 @@
                         <label for="proximaVisita">Fecha Proxima Visita:</label>
                         <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{proximaVisitaDatepickerVisible}}">
                             <div class="input-group">
-                                <input id="proximaVisita" ng-model="paciente.FechaProximaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                <input id="proximaVisita" ng-model="paciente.fechaProximaVisita" class="form-control" placeholder="Selecciona una fecha" type="text" />
                                 <span ng-click="toggleProximaVisitaDatepicker()" class="input-group-addon" style="cursor: pointer">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </span>
@@ -224,7 +224,7 @@
                             <label for="fechaInicio">Fecha Inicio:</label>
                             <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaInicioVisible}}">
                                 <div class="input-group">
-                                    <input id="fechaInicio" ng-model="tratamiento.FechaInicio" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <input id="fechaInicio" ng-model="tratamiento.fechaInicio" class="form-control" placeholder="Selecciona una fecha" type="text" required />
                                     <span ng-click="toggleTratamientoFechaInicioDatepicker()" class="input-group-addon" style="cursor: pointer">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
@@ -235,7 +235,7 @@
                             <label for="fechaConclusion">Fecha Conclusion:</label>
                             <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaConclusionVisible}}">
                                 <div class="input-group">
-                                    <input id="fechaConclusion" ng-model="tratamiento.FechaConclusion" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                    <input id="fechaConclusion" ng-model="tratamiento.fechaConclusion" class="form-control" placeholder="Selecciona una fecha" type="text" />
                                     <span ng-click="toggleTratamientoFechaConclusionDatepicker()" class="input-group-addon" style="cursor: pointer">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
@@ -244,11 +244,11 @@
                         </div>
                         <div class="form-group">
                             <label for="costo">Costo:</label>
-                            <input ng-model="tratamiento.Costo" type="number" class="form-control" id="costo" placeholder="Costo.." required>
+                            <input ng-model="tratamiento.costo" type="number" class="form-control" id="costo" placeholder="Costo.." required>
                         </div>
                         <div class="form-group">
                             <label for="detalle">Detalle:</label>
-                            <input ng-model="tratamiento.Detalle" type="text" class="form-control" id="detalle" placeholder="Detalle.." required>
+                            <input ng-model="tratamiento.detalle" type="text" class="form-control" id="detalle" placeholder="Detalle.." required>
                         </div>
                         <button type="submit" ng-disabled="form.$invalid" class="btn btn-info btn-actualizar">Actualizar</button>
                     </form>
@@ -264,7 +264,7 @@
                             <label for="fechaInicio">Fecha Inicio:</label>
                             <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaInicioVisible}}">
                                 <div class="input-group">
-                                    <input id="fechaInicio" ng-model="tratamiento.FechaInicio" class="form-control" placeholder="Selecciona una fecha" type="text" required />
+                                    <input id="fechaInicio" ng-model="tratamiento.fechaInicio" class="form-control" placeholder="Selecciona una fecha" type="text" required />
                                     <span ng-click="toggleTratamientoFechaInicioDatepicker()" class="input-group-addon" style="cursor: pointer">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
@@ -275,7 +275,7 @@
                             <label for="fechaConclusion">Fecha Conclusion:</label>
                             <datepicker date-format="yyyy-MM-dd" selector="form-control" datepicker-show="{{tratamientoFechaConclusionVisible}}">
                                 <div class="input-group">
-                                    <input id="fechaConclusion" ng-model="tratamiento.FechaConclusion" class="form-control" placeholder="Selecciona una fecha" type="text" />
+                                    <input id="fechaConclusion" ng-model="tratamiento.fechaConclusion" class="form-control" placeholder="Selecciona una fecha" type="text" />
                                     <span ng-click="toggleTratamientoFechaConclusionDatepicker()" class="input-group-addon" style="cursor: pointer">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
@@ -284,11 +284,11 @@
                         </div>
                         <div class="form-group">
                             <label for="costo">Costo:</label>
-                            <input ng-model="tratamiento.Costo" type="number" class="form-control" id="costo" placeholder="Costo.." required>
+                            <input ng-model="tratamiento.costo" type="number" class="form-control" id="costo" placeholder="Costo.." required>
                         </div>
                         <div class="form-group">
                             <label for="detalle">Detalle:</label>
-                            <input ng-model="tratamiento.Detalle" type="text" class="form-control" id="detalle" placeholder="Detalle.." required>
+                            <input ng-model="tratamiento.detalle" type="text" class="form-control" id="detalle" placeholder="Detalle.." required>
                         </div>
                         <button type="submit" ng-disabled="form.$invalid" class="btn btn-info btn-actualizar">Guardar</button>
                     </form>
