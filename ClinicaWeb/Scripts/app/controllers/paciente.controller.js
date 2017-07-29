@@ -17,12 +17,12 @@
             $scope.gridOptions = {
                 data: 'gridData',
                 columnDefs: [
-                    { field: 'PacienteId', displayName: 'Cedula', width: 150 },
-                    { field: 'Nombre', width: 150 },
-                    { field: 'Edad', width: 100 },
-                    { field: 'Contacto', width: 150},
-                    { field: 'FechaUltimaVisita', width: 180 },
-                    { field: 'FechaProximaVisita', width: 180 },
+                    { field: 'pacienteId', displayName: 'Cedula', width: 150 },
+                    { field: 'nombre', width: 150 },
+                    { field: 'edad', width: 100 },
+                    { field: 'contacto', width: 150},
+                    { field: 'fechaUltimaVisita', width: 180 },
+                    { field: 'fechaProximaVisita', width: 180 },
                     { field: 'actions', displayName: 'Acciones', cellTemplate: '<button ng-click="grid.appScope.detalles(row)" class="btn btn-info">Ver Detalles</button><button ng-click="grid.appScope.eliminar(row)" class="btn btn-danger">Eliminar</button>', width: 200 }
 
                 ],
@@ -65,7 +65,7 @@
             }
 
             $scope.eliminar = function (row) {
-                PacienteService.deletePaciente(row.entity.PacienteId, function (data) {
+                PacienteService.deletePaciente(row.entity.pacienteId, function (data) {
                     eliminarEntity(row.entity);
                 }, function (error) {
                     alert('Se produjo un error. Contacte al administrador para resolver el problema');
@@ -73,7 +73,7 @@
             }
 
             $scope.detalles = function (row) {
-                sessionStorage.pacienteId = row.entity.PacienteId;
+                sessionStorage.pacienteId = row.entity.pacienteId;
                 $location.path("/detalle");
             }
 
@@ -88,8 +88,8 @@
 
             function convertFechas(pacientes) {
                 for (var i = 0; i < pacientes.length; i++) {
-                    pacientes[i].FechaUltimaVisita = formatDate(new Date(pacientes[i].FechaUltimaVisita));
-                    pacientes[i].FechaProximaVisita = formatDate(new Date(pacientes[i].FechaProximaVisita));
+                    pacientes[i].fechaUltimaVisita = formatDate(new Date(pacientes[i].fechaUltimaVisita));
+                    pacientes[i].fechaProximaVisita = formatDate(new Date(pacientes[i].fechaProximaVisita));
                 }
             }
 

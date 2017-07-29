@@ -25,10 +25,10 @@
             $scope.gridOptions = {
                 data: 'gridData',
                 columnDefs: [
-                    { field: 'FechaInicio', displayName: 'Fecha Inicio', width: 200 },
-                    { field: 'FechaConclusion', displayName: 'Fecha Conclusion', width: 200 },
-                    { field: 'Costo', width: 200 },
-                    { field: 'Detalle', width: 280 },
+                    { field: 'fechaInicio', displayName: 'Fecha Inicio', width: 200 },
+                    { field: 'fechaConclusion', displayName: 'Fecha Conclusion', width: 200 },
+                    { field: 'costo', width: 200 },
+                    { field: 'detalle', width: 280 },
                     { field: 'actions', displayName: 'Acciones', cellTemplate: '<button ng-click="grid.appScope.editarTratamiento(row)" class="btn btn-info">Editar</button><button ng-click="grid.appScope.eliminarTratamiento(row)" class="btn btn-danger">Eliminar</button>', width: 200}
                 ],
                 enableSorting: true,
@@ -48,7 +48,7 @@
             }
 
             $scope.agregarTratamiento = function (row) {
-                $scope.tratamiento.PacienteId = $scope.paciente.PacienteId;
+                $scope.tratamiento.pacienteId = $scope.paciente.pacienteId;
                 $scope.modalToDisplay = 'agregarTratamiento';
                 $scope.modalWrapper.style.display = 'block';
             }
@@ -56,7 +56,7 @@
             $scope.guardarTratamiento = function () {
                 TratamientoService.saveTratamiento($scope.tratamiento, function (response) {
                     alert('Tratamiento agregado correctamente');
-                    $scope.tratamiento.Id = response.data.Id;
+                    $scope.tratamiento.id = response.data.id;
                     $scope.gridData.push($scope.tratamiento);
                     $scope.cerrarModal();
                 }, function (error) {
@@ -84,7 +84,7 @@
             }
 
             $scope.eliminarTratamiento = function (row) {
-                TratamientoService.deleteTratamiento(row.entity.Id, function (data) {
+                TratamientoService.deleteTratamiento(row.entity.id, function (data) {
                     removeEntity(row.entity);
                 }, function (error) {
                     alert('Se produjo un error. Contacte al administrador para resolver el problema');
@@ -114,11 +114,11 @@
 
             PacienteService.getPacientePorId($scope.pacienteId, function (data) {
                 $scope.paciente = data;
-                $scope.paciente.FechaUltimaVisita = formatDate(new Date($scope.paciente.FechaUltimaVisita));
-                $scope.paciente.FechaProximaVisita = formatDate(new Date($scope.paciente.FechaProximaVisita));
-                $scope.nombre = $scope.paciente.Nombre;
+                $scope.paciente.fechaUltimaVisita = formatDate(new Date($scope.paciente.fechaUltimaVisita));
+                $scope.paciente.fechaProximaVisita = formatDate(new Date($scope.paciente.fechaProximaVisita));
+                $scope.nombre = $scope.paciente.nombre;
                 convertFechasTratamientos();
-                $scope.gridData = $scope.paciente.Tratamientos;
+                $scope.gridData = $scope.paciente.tratamientos;
             }, function (error) {
                 alert(error);
             }, function () {
@@ -126,10 +126,10 @@
             });
 
             function updateGrid() {
-                $scope.tratamientoEditado.FechaInicio = $scope.tratamiento.FechaInicio;
-                $scope.tratamientoEditado.FechaConclusion = $scope.tratamiento.FechaConclusion;
-                $scope.tratamientoEditado.Costo = $scope.tratamiento.Costo;
-                $scope.tratamientoEditado.Detalle = $scope.tratamiento.Detalle;
+                $scope.tratamientoEditado.fechaInicio = $scope.tratamiento.fechaInicio;
+                $scope.tratamientoEditado.fechaConclusion = $scope.tratamiento.fechaConclusion;
+                $scope.tratamientoEditado.costo = $scope.tratamiento.costo;
+                $scope.tratamientoEditado.detalle = $scope.tratamiento.detalle;
             }
 
             function removeEntity(entity) {
@@ -140,9 +140,9 @@
             }
 
             function convertFechasTratamientos() {
-                for (var i = 0; i < $scope.paciente.Tratamientos.length; i++) {
-                    $scope.paciente.Tratamientos[i].FechaInicio = formatDate(new Date($scope.paciente.Tratamientos[i].FechaInicio));
-                    $scope.paciente.Tratamientos[i].FechaConclusion = formatDate(new Date($scope.paciente.Tratamientos[i].FechaConclusion));
+                for (var i = 0; i < $scope.paciente.tratamientos.length; i++) {
+                    $scope.paciente.tratamientos[i].fechaInicio = formatDate(new Date($scope.paciente.tratamientos[i].fechaInicio));
+                    $scope.paciente.tratamientos[i].fechaConclusion = formatDate(new Date($scope.paciente.tratamientos[i].fechaConclusion));
                 }
             }
 
