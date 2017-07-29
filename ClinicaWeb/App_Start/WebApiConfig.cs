@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ClinicaWeb.Filters;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace ClinicaWeb
             var settings = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Formatting.Indented;
+
+            //Register Authentication Filter
+            config.Filters.Add(new BasicAuthorizeAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

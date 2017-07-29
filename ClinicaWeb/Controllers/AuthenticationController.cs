@@ -1,13 +1,9 @@
 ﻿using ClinicaWeb.Models;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 
 namespace ClinicaWeb.Controllers
 {
+    [AllowAnonymous]
     public class AuthenticationController : ApiController
     {
         //We are currently authenticating against Web.config, but we could change data source.

@@ -921,6 +921,7 @@
     <Compile Include="Controllers\TratamientosController.cs" />
     <Compile Include="DTOs\PacienteDto.cs" />
     <Compile Include="DTOs\TratamientoDto.cs" />
+    <Compile Include="Filters\BasicAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
